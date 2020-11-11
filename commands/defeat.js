@@ -30,7 +30,7 @@ module.exports = {
 			user = await message.client.users.fetch(userID);
 		} else {
 			const members = await message.guild.members.fetch({ query: mention, limit: 1 });
-			user = members.first().user
+			user = members.first() && members.first().user
 		}
 						
 		if (!user) return sendError(message);
