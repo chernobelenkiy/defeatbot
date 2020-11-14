@@ -10,7 +10,10 @@ const getImage = (filename) => getFile('images/' + filename)
 
 const images = {
   lost: getImage('lost.png'),
-  defeat: getImage('defeat.png')
+  defeat: getImage('defeat.png'),
+  5: getImage('5.png'),
+  4: getImage('4.png'),
+  3: getImage('3.png')
 }
 
 const configs = {

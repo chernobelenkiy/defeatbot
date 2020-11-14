@@ -2,9 +2,7 @@ const Canvas = require('canvas');
 const Discord = require('discord.js');
 const { images } = require('./files');
 
-const sendError = (message,) => {
-	message.channel.send('No one to defeat.')
-}
+const ERROR_MSG = 'No one to defeat.';
 
 const getUser = async (mention, members, users) => {
 	let user;
@@ -30,9 +28,9 @@ module.exports = {
 	name: 'defeat',
 	description: 'defeat',
 	async execute(message, args, env) {
-		if (args.length === 0) return sendError(message);
-
-		const { author, author: { username }, guild: { members }, client: { users } } = message
+		const { channel, author, author: { username }, guild: { members }, client: { users } } = message
+		if (args.length === 0) return channel.send(ERROR_MSG);
+		
 		const canvas = Canvas.createCanvas(736, 347);
 		const ctx = canvas.getContext('2d');
 		let background;
@@ -40,7 +38,7 @@ module.exports = {
 
 		const user = await getUser(args[0], members, users);
 						
-		if (!user) return sendError(message);
+		if (!user) return channel.send(ERROR_MSG);
 
 		if (user.id === env.SECRET_USER) {
 			background = await Canvas.loadImage(images.lost);
@@ -71,6 +69,6 @@ module.exports = {
 
 		const attachment = new Discord.MessageAttachment(canvas.toBuffer(), 'defeated.png');
 
-		message.channel.send(shout, attachment);
+		channel.send(shout, attachment);
 	},
 };
