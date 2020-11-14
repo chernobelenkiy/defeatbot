@@ -21,12 +21,10 @@ client.on('message', message => {
 	const args = message.content.slice(config.PREFIX.length).trim().split(/ +/);
     const command = args.shift().toLowerCase();
 
-    console.log(client.commands.has(command))
-
     if (!client.commands.has(command)) return;
 
     try {
-        client.commands.get(command).execute(message, args);
+        client.commands.get(command).execute(message, args, config);
     } catch (error) {
         console.error(error);
         message.reply('there was an error trying to execute that command!');

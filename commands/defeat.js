@@ -1,44 +1,48 @@
 const Canvas = require('canvas');
 const Discord = require('discord.js');
 
-const sendError = (message) => {
+const sendError = (message,) => {
 	message.channel.send('No one to defeat.')
+}
+
+const getUser = async (mention, members, users) => {
+	let user;
+	
+	if (/<@/.test(mention)) {
+		const userID = mention.replace(/<@!?|>|</g, '');
+		user = await users.fetch(userID);
+	} else {
+		const allMembers = await members.fetch({ query: mention, limit: 1 });
+		user = allMembers.first() && allMembers.first().user
+	}
+
+	return user;
+}
+
+const drawAvatar = async (ctx, username, url, { x, y }) => {
+	const winnerAvatar = await Canvas.loadImage(url);
+	ctx.drawImage(winnerAvatar, x, y, 80, 85);
+	ctx.fillText(username, x, y - 10);
 }
 
 module.exports = {
 	name: 'defeat',
 	description: 'defeat',
-	async execute(message, args) {
+	async execute(message, args, config) {
 		if (args.length === 0) return sendError(message);
 
+		const { author, author: { username }, guild: { members }, client: { users } } = message
 		const canvas = Canvas.createCanvas(736, 347);
 		const ctx = canvas.getContext('2d');
 		let background;
 		let shout;
 
-		//ToDo: fix images later
-		let left = 0;
-		let top = 0;
-		
-		const mention = args[0]
-		let user
-
-		if (mention.includes('<@!') || mention.includes('<@')) {
-			let userID = mention.includes('<@!') ? mention.replace('<@!', '').replace('>', '')
-						: mention.includes('<@') ? mention.replace('<@', '').replace('<', '') : '';
-
-			user = await message.client.users.fetch(userID);
-		} else {
-			const members = await message.guild.members.fetch({ query: mention, limit: 1 });
-			user = members.first() && members.first().user
-		}
+		const user = await getUser(args[0], members, users);
 						
 		if (!user) return sendError(message);
 
-		if (user.id === '509083292008579110') {
+		if (user.id === config.SECRET_USER) {
 			background = await Canvas.loadImage('./commands/lost.png');
-			left = 3;
-			top = 5;
 			shout = 'you lost!'
 		} else {
 			shout = 'defeated!';
@@ -50,13 +54,19 @@ module.exports = {
 
 		ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
 
-		const winnerAvatar = await Canvas.loadImage(message.author.displayAvatarURL({ format: 'jpg' }));
-		ctx.drawImage(winnerAvatar, 210 - left, 200 - top, 80, 85);
-		ctx.fillText(message.author.username, 210 - left, 190 - top);
+		await drawAvatar(
+			ctx,
+			username,
+			author.displayAvatarURL({ format: 'jpg' }),
+			{ x: 210, y: 200 }
+		);
 
-		const looserAvatar = await Canvas.loadImage(user.displayAvatarURL({ format: 'jpg' }));
-		ctx.drawImage(looserAvatar, 450- left, 200 - top, 80, 85);
-		ctx.fillText(user.username, 450- left, 190 - top);
+		await drawAvatar(
+			ctx,
+			user.username, 
+			user.displayAvatarURL({ format: 'jpg' }),
+			{ x: 450, y: 190 }
+		);
 
 		const attachment = new Discord.MessageAttachment(canvas.toBuffer(), 'defeated.png');
 
