@@ -4,5 +4,6 @@ module.exports = {
 	name: 'raise',
 	description: 'raise',
 	async execute(message, args, env) {
+    console.log(config);
   }
 }
