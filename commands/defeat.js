@@ -1,5 +1,6 @@
 const Canvas = require('canvas');
 const Discord = require('discord.js');
+const { images } = require('./files');
 
 const sendError = (message,) => {
 	message.channel.send('No one to defeat.')
@@ -28,7 +29,7 @@ const drawAvatar = async (ctx, username, url, { x, y }) => {
 module.exports = {
 	name: 'defeat',
 	description: 'defeat',
-	async execute(message, args, config) {
+	async execute(message, args, env) {
 		if (args.length === 0) return sendError(message);
 
 		const { author, author: { username }, guild: { members }, client: { users } } = message
@@ -41,12 +42,12 @@ module.exports = {
 						
 		if (!user) return sendError(message);
 
-		if (user.id === config.SECRET_USER) {
-			background = await Canvas.loadImage('./commands/lost.png');
+		if (user.id === env.SECRET_USER) {
+			background = await Canvas.loadImage(images.lost);
 			shout = 'you lost!'
 		} else {
 			shout = 'defeated!';
-			background = await Canvas.loadImage('./commands/defeat.png')
+			background = await Canvas.loadImage(images.defeat);
 		}
 
 		ctx.font = 'bold 14px sans-serif';
