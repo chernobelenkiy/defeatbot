@@ -23,80 +23,107 @@
     }
   },
   "7": {
-    "faction": {
-      "5": 4
+    "girls": {
+      "unit": {},
+      "faction": {
+        "5": 4
+      },
+      "generic": {}
     }
   },
+    
   "8": {
-    "unit": {},
-    "faction": {
-      "5": 3,
-      "6": 1
-    },
-    "generic": {}
+    "girls": {
+      "unit": {},
+      "faction": {
+        "5": 3,
+        "6": 1
+      },
+      "generic": {}
+    }
   },
   "9": {
-    "unit": {
-      "5": 1
-    },
-    "faction": {
-      "6": 1,
-      "5": 2
-    },
-    "generic": {}
+    "girls": {
+      "unit": {
+        "5": 1
+      },
+      "faction": {
+        "6": 1,
+        "5": 2
+      },
+      "generic": {}
+    }
   },
   "10": {
-    "unit": {
-      "5": 2
-    },
-    "faction": {
-      "6": 1
-    },
-    "generic": {
-      "9": 1
+    "girls": {
+      "unit": {
+        "5": 2
+      },
+      "faction": {
+        "6": 1
+      },
+      "generic": {
+        "9": 1
+      }
     }
+    
   },
   "LB1": {
-    "unit": {
-      "5": 1
-    },
-    "faction": {},
-    "generic": {
-      "9": 1
+    "girls": {
+      "unit": {
+        "5": 1
+      },
+      "faction": {},
+      "generic": {
+        "9": 1
+      }
     }
+    
   },
   "LB2": {
-    "unit": {
-      "5": 1
-    },
-    "faction": {},
-    "generic": {
-      "9": 1
+    "girls": {
+      "unit": {
+        "5": 1
+      },
+      "faction": {},
+      "generic": {
+        "9": 1
+      }
     }
+    
   },
   "LB3": {
-    "unit": {},
-    "faction": {},
-    "generic": {
-      "10": 1
+    "girls": {
+      "unit": {},
+      "faction": {},
+      "generic": {
+        "10": 1
+      }
     }
+    
   },
   "LB4": {
-    "unit": {
-      "5": 1
-    },
-    "faction": {},
-    "generic": {
-      "10": 1
+    "girls": {
+      "unit": {
+        "5": 1
+      },
+      "faction": {},
+      "generic": {
+        "10": 1
+      }
     }
+    
   },
   "LB5": {
-    "unit": {
-      "5": 1
-    },
-    "faction": {},
-    "generic": {
-      "10": 1
+    "girls": {
+      "unit": {
+        "5": 1
+      },
+      "faction": {},
+      "generic": {
+        "10": 1
+      }
     }
+    
   }
 }
