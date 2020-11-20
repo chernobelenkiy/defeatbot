@@ -1,12 +1,15 @@
 const path = require('path');
 var fs = require('fs');
 
-const getFile = (filename) => path.resolve(__dirname, 'data', filename);
+const CONFIG_PATH = 'configs';
+const IMAGE_PATH = 'images';
+
+const getFile = (...paths) => path.resolve(__dirname, 'data', ...paths);
 
 const getConfig = (filename) => 
-  JSON.parse(fs.readFileSync(getFile('configs/' + filename)));
+  JSON.parse(fs.readFileSync(getFile(CONFIG_PATH, `${filename}.json`)));
 
-const getImage = (filename) => getFile('images/' + filename)
+const getImage = (filename) => getFile(IMAGE_PATH, filename);
 
 const images = {
   lost: getImage('lost.png'),
@@ -17,7 +20,7 @@ const images = {
 }
 
 const configs = {
-  raise: getConfig('raise.json')
+  raise: getConfig('raise')
 }
 
 module.exports = {
