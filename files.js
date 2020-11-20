@@ -1,7 +1,7 @@
 const path = require('path');
 var fs = require('fs');
 
-const getFile = (filename) => path.resolve(__dirname, filename);
+const getFile = (filename) => path.resolve(__dirname, 'data', filename);
 
 const getConfig = (filename) => 
   JSON.parse(fs.readFileSync(getFile('configs/' + filename)));

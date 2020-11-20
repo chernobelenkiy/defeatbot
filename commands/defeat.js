@@ -1,6 +1,6 @@
 const Canvas = require('canvas');
 const Discord = require('discord.js');
-const { images } = require('./files');
+const { images } = require('../files');
 
 const ERROR_MSG = 'No one to defeat.';
 
