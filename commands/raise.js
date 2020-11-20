@@ -1,4 +1,4 @@
-
+const { exec } = require('../modules/raise');
 
 module.exports = {
 	name: 'raise',
@@ -7,6 +7,6 @@ module.exports = {
     const { channel } = message;
     if (args.length < 1) return channel.send('Provide a girl level to raise');
 
-    console.log('raising!')
+    exec();
   }
 }

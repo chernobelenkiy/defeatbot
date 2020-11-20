@@ -1,4 +1,7 @@
-const config = require('../files').configs.raise;
+const { fromJS } = require('immutable');
+const config = fromJS(require('../files').configs.raise);
+
+
 
 const getGirlsCount = (type) => {
   
@@ -20,4 +23,12 @@ const getStats = () => {
 
 
   }
+}
+
+const exec = () => {
+  console.log(config.toJS());
+}
+
+module.exports = {
+  exec
 }
