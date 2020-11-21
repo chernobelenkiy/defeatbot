@@ -8,11 +8,10 @@ class Report {
   }
 
   createName(type) {
-    return !isNaN(parseInt(type)) ? `${type} star` : type;
+    return `${type} star`;
   }
 
   generateFraction(key) {
-    console.log(this._data.toJS())
     return this._data.get(key).reduce((report, amount = 0, type) => {
       return `${report} ${amount} ${this.createName(type)}\n`
     }, ``)

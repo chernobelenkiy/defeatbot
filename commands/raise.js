@@ -2,7 +2,7 @@
 const { List } = require('immutable');
 const modules = require('../modules');
 
-const stats = new List(['5', '6', '7', '8', '9', '10', 'LB1', 'LB2', 'LB3', 'LB4', "LB5"]);
+const stats = new List(['5', '6', '7', '8', '9', '10', '11', '12', '13', '14', "15"]);
 
 const NO_GIRL_LEVEL = 'Provide a girl level to raise.'
 
@@ -22,6 +22,6 @@ module.exports = {
     const Raise = new modules.Raise({ from, to, isTotal });
     Raise.exec();
 
-    channel.send(`To raise ${from} girl you need:\n${Raise.generateReport()}`);
+    channel.send(`To raise ${from} star girl you need:\n${Raise.generateReport()}`);
   }
 }
